@@ -1,0 +1,166 @@
+/* ------------------------------------------------------------------ */
+/* Design tokens - Formula 1 official palette                          */
+/* ------------------------------------------------------------------ */
+:root {
+  /* Brand */
+  --f1-red: #e10600;
+  --f1-red-deep: #b30500;
+  --f1-black: #15151e;
+  --f1-carbon: #38383f;
+  --f1-gray: #949498;
+  --f1-white: #ffffff;
+
+  /* Surfaces (dark, broadcast style) */
+  --bg: #0f0f15;
+  --surface: #15151e;
+  --surface-2: #1d1d27;
+  --surface-3: #262631;
+  --hairline: #2c2c37;
+  --grid: #24242e;
+
+  /* Text */
+  --text: #ffffff;
+  --text-2: #b9b9c3;
+  --text-3: #8a8a94;
+
+  /* Timing status colours (F1 live timing) - reserved, never used as series */
+  --t-purple: #b44bff;
+  --t-green: #2fd36b;
+  --t-yellow: #ffd12e;
+
+  /* Tyre compounds */
+  --soft: #e10600;
+  --medium: #ffd12e;
+  --hard: #f0f0f0;
+  --inter: #39b54a;
+  --wet: #0067ad;
+
+  --radius: 10px;
+  --radius-sm: 6px;
+  --font: 'Titillium Web', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  color-scheme: dark;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; min-height: 100vh; }
+body { background: var(--bg); font-size: 15px; line-height: 1.45; }
+button, select, input { font: inherit; color: inherit; }
+a { color: inherit; }
+.mono, .num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* ------------------------------------------------------------------ */
+/* App shell                                                            */
+/* ------------------------------------------------------------------ */
+.topbar {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; gap: 28px;
+  padding: 0 24px; height: 60px;
+  background: var(--f1-black);
+  border-bottom: 3px solid var(--f1-red);
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 900; letter-spacing: .02em; font-size: 19px; text-decoration: none; }
+.brand-mark { width: 34px; height: 22px; }
+.brand small { font-weight: 400; color: var(--text-3); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+.nav { display: flex; gap: 4px; height: 100%; }
+.nav a {
+  display: flex; align-items: center; gap: 8px; padding: 0 14px; height: 100%;
+  text-decoration: none; color: var(--text-2); font-weight: 600; font-size: 14px;
+  text-transform: uppercase; letter-spacing: .06em; border-bottom: 3px solid transparent; margin-bottom: -3px;
+}
+.nav a:hover { color: var(--text); }
+.nav a.active { color: var(--text); border-bottom-color: var(--f1-white); }
+.nav .phase { font-size: 10px; color: var(--text-3); border: 1px solid var(--hairline); border-radius: 4px; padding: 0 5px; }
+
+.page { padding: 20px 24px 64px; max-width: 1680px; margin: 0 auto; }
+.page-title { display: flex; align-items: baseline; gap: 14px; margin: 4px 0 18px; }
+.page-title h1 { margin: 0; font-size: 30px; font-weight: 900; text-transform: uppercase; letter-spacing: .01em; }
+.page-title .sub { color: var(--text-3); font-size: 15px; }
+
+/* ------------------------------------------------------------------ */
+/* Controls                                                             */
+/* ------------------------------------------------------------------ */
+.filters { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; margin-bottom: 18px; }
+.field { display: flex; flex-direction: column; gap: 4px; }
+.field label { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: .1em; font-weight: 600; }
+.select {
+  appearance: none; background: var(--surface-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23949498'/%3E%3C/svg%3E") no-repeat right 12px center;
+  border: 1px solid var(--hairline); border-radius: var(--radius-sm);
+  padding: 8px 34px 8px 12px; min-width: 120px; cursor: pointer;
+}
+.select:hover { border-color: var(--f1-carbon); }
+.select:focus-visible, .seg button:focus-visible, .btn:focus-visible { outline: 2px solid var(--f1-red); outline-offset: 2px; }
+.seg { display: inline-flex; background: var(--surface-2); border: 1px solid var(--hairline); border-radius: var(--radius-sm); padding: 3px; gap: 2px; }
+.seg button { border: 0; background: transparent; padding: 5px 12px; border-radius: 4px; cursor: pointer; color: var(--text-2); font-weight: 600; font-size: 13px; }
+.seg button:hover:not(:disabled) { color: var(--text); background: var(--surface-3); }
+.seg button.on { background: var(--f1-red); color: #fff; }
+.seg button:disabled { opacity: .35; cursor: not-allowed; }
+.btn { border: 1px solid var(--hairline); background: var(--surface-2); border-radius: var(--radius-sm); padding: 7px 14px; cursor: pointer; font-weight: 600; }
+.btn:hover { background: var(--surface-3); }
+.btn.primary { background: var(--f1-red); border-color: var(--f1-red); }
+.btn.primary:hover { background: var(--f1-red-deep); }
+.btn.icon { padding: 6px 10px; display: inline-flex; align-items: center; gap: 6px; }
+
+/* ------------------------------------------------------------------ */
+/* Cards                                                                */
+/* ------------------------------------------------------------------ */
+.card { background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius); overflow: hidden; }
+.card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--hairline); }
+.card-head h2 { margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.card-head h2::before { content: ''; width: 3px; height: 14px; background: var(--f1-red); border-radius: 2px; }
+.card-head .hint { color: var(--text-3); font-size: 12px; }
+.card-body { padding: 14px 16px; }
+
+/* Stat tiles */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.stat { background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius); padding: 12px 16px; position: relative; overflow: hidden; }
+.stat .label { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: .1em; font-weight: 600; }
+.stat .value { font-size: 26px; font-weight: 700; margin-top: 2px; }
+.stat .meta { font-size: 12.5px; color: var(--text-2); display: flex; align-items: center; gap: 6px; }
+
+/* Timing dots / chips */
+.tdot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
+.t-purple { --tc: var(--t-purple); }
+.t-green { --tc: var(--t-green); }
+.t-yellow { --tc: var(--t-yellow); }
+.tbar { height: 3px; border-radius: 2px; background: var(--tc, var(--hairline)); }
+.swatch-line { display: inline-block; width: 18px; height: 0; border-top: 2px solid; vertical-align: middle; }
+.swatch-line.dashed { border-top-style: dashed; }
+
+/* Loading / errors */
+.loading { display: flex; align-items: center; gap: 12px; padding: 40px; color: var(--text-2); justify-content: center; }
+.lights { display: flex; gap: 6px; }
+.lights span { width: 14px; height: 14px; border-radius: 50%; background: var(--surface-3); animation: light 2.5s infinite; }
+.lights span:nth-child(2) { animation-delay: .25s } .lights span:nth-child(3) { animation-delay: .5s }
+.lights span:nth-child(4) { animation-delay: .75s } .lights span:nth-child(5) { animation-delay: 1s }
+@keyframes light { 0%, 10% { background: var(--surface-3) } 20%, 80% { background: var(--f1-red); box-shadow: 0 0 10px var(--f1-red) } 90%, 100% { background: var(--surface-3) } }
+.error { border: 1px solid var(--f1-red); background: #e1060014; color: var(--text); padding: 12px 16px; border-radius: var(--radius-sm); }
+.empty { color: var(--text-3); padding: 30px; text-align: center; }
+.refetching { opacity: .5; transition: opacity .2s; pointer-events: none; }
+
+/* Tooltip */
+.tip {
+  position: fixed; pointer-events: none; z-index: 50;
+  background: #0b0b10ee; border: 1px solid var(--hairline); border-radius: 8px;
+  padding: 8px 10px; font-size: 12.5px; min-width: 150px; box-shadow: 0 8px 24px #0008;
+}
+.tip .tip-h { color: var(--text-3); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+.tip .row { display: flex; align-items: center; gap: 8px; justify-content: space-between; }
+.tip .row b { font-family: var(--mono); font-weight: 600; }
+.tip .row span { color: var(--text-2); display: flex; align-items: center; gap: 6px; }
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+@media (max-width: 760px) {
+  .topbar { gap: 12px; padding: 0 12px; overflow-x: auto; }
+  .brand small { display: none; }
+  .page { padding: 16px 16px 48px; }
+}

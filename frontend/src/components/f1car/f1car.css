@@ -1,0 +1,51 @@
+/* Tokens for the isometric car figure: carbon greys tuned to the app surface,
+   plus the team livery mixed into every solid marked .livery. */
+.f1car.iso {
+  --anatomy-paper: #15151e; --anatomy-card: #15151e;
+  --anatomy-face: #2c2c35; --anatomy-top: #3e3e49;
+  --anatomy-shade-0: #1f1f27; --anatomy-shade-1: #25252e; --anatomy-shade-2: #2c2c35; --anatomy-shade-3: #33333d;
+  --anatomy-lit-top: #6a6a76; --anatomy-lit-shade: #4a4a55;
+  --anatomy-hi: #d8d8e0; --anatomy-mid: #85858f; --anatomy-lo: #4f4f5a; --anatomy-faint: #363641; --anatomy-lit: #ffffff;
+  --anatomy-halo: #000; --anatomy-halo-opacity: .75; --anatomy-dot: #c9c9d1;
+  --team: #e10600;
+}
+.f1car .livery > .iso-top { fill: color-mix(in oklab, var(--team) 82%, #15151e); }
+.f1car .livery > .iso-fill { fill: color-mix(in oklab, var(--team) 45%, #15151e); }
+.f1car .livery > .iso-shade[data-shade="3"] { fill: color-mix(in oklab, var(--team) 64%, #15151e); }
+.f1car .livery > .iso-shade[data-shade="2"] { fill: color-mix(in oklab, var(--team) 54%, #15151e); }
+.f1car .livery > .iso-shade[data-shade="1"] { fill: color-mix(in oklab, var(--team) 44%, #15151e); }
+.f1car .livery > .iso-shade[data-shade="0"] { fill: color-mix(in oklab, var(--team) 34%, #15151e); }
+.f1car .tyre > .iso-fill, .f1car .tyre > .iso-top { fill: #101015; }
+.f1car .tyre > .iso-shade[data-shade="3"] { fill: #1d1d24; }
+.f1car .tyre > .iso-shade[data-shade="2"] { fill: #18181e; }
+.f1car .tyre > .iso-shade[data-shade="1"], .f1car .tyre > .iso-shade[data-shade="0"] { fill: #121217; }
+.f1car .helmet > .iso-shade, .f1car .helmet > .iso-top, .f1car .helmet > .iso-fill { fill: #e8e8ee; stroke: #e8e8ee; }
+.f1car .helmet > .iso-shade[data-shade="0"], .f1car .helmet > .iso-shade[data-shade="1"] { fill: #b9b9c4; stroke: #b9b9c4; }
+.f1car .car-void { fill: #07070a; stroke: none; }
+.f1car .car-rainlight { fill: #e10600; }
+.f1car [data-part="halo"] .tb-body { fill: #4a4a55; }
+.f1car [data-part="halo"] .tb-shine { fill: #6c6c78; }
+/* hover: the picked part lights up */
+.f1car [data-on] .iso-edge, .f1car [data-on] .tb-edge { stroke: #fff; }
+.f1car [data-on] > .iso-solid:not(.livery) > .iso-top { fill: #5a5a66; }
+.f1car [data-part] { cursor: pointer; }
+
+/* Card around the figure (the kit's plate, in the app's colours) */
+.car-plate.iso-plate { box-shadow: none; padding: 46px 18px 40px; background: radial-gradient(ellipse at 50% 60%, #1c1c26 0%, #15151e 70%); }
+.car-plate .iso-plate-corner { font-family: var(--mono); font-size: 11px; color: var(--text-3); }
+.car-plate .iso-plate-corner[data-corner="fig"], .car-plate .iso-plate-corner[data-corner="readout"] { color: var(--text-2); }
+.car-plate .iso-plate-corner[data-corner="readout"] { max-width: 62%; white-space: normal; text-align: right; }
+.car-stage { outline: none; cursor: pointer; }
+.car-stage:focus-visible { box-shadow: 0 0 0 2px var(--f1-red); border-radius: 6px; }
+.car-loading { height: 320px; display: grid; place-items: center; color: var(--text-3); }
+.car-legend { display: flex; flex-wrap: wrap; gap: 18px; padding: 10px 16px; border-top: 1px solid var(--hairline); font-size: 12.5px; color: var(--text-2); }
+.car-legend span { display: inline-flex; align-items: center; gap: 8px; }
+.key { display: inline-block; width: 16px; height: 10px; border-radius: 2px; }
+.key-lit { background: #6a6a76; box-shadow: inset 0 0 0 1px #fff; }
+.key-tick { height: 2px; background: var(--text-3); }
+.car-specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; margin: 0; background: var(--hairline); border-top: 1px solid var(--hairline); }
+.car-specs div { background: var(--surface); padding: 10px 16px; }
+.car-specs dt { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--text-3); font-weight: 600; }
+.car-specs dd { margin: 2px 0 0; font-size: 14px; }
+.car-card .seg button { display: inline-flex; align-items: center; gap: 6px; }
+@media (max-width: 760px) { .car-plate .iso-plate-corner[data-corner="title"] { display: none; } .car-card .card-head { flex-wrap: wrap; } }
